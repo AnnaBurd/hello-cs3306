@@ -2,6 +2,6 @@ package com.cs3306.demo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MessageRepository extends JpaRepository<Message, Integer>{
+public interface PostRepository extends JpaRepository<Post, Integer>{
 
 }

@@ -3,8 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <title>Hello! </title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-Demo: This APP loads data from PostgreSQL database that resides in Cloud provided by Heroku PaaS
+    <h1>Demo: Course Forum</h1> 
+    <p>This APP loads and stored data to PostgreSQL database which resides in AWS Cloud provided by Heroku PaaS</p>
+    
+    <div>You can see recent posts and write your own below:</div>
+    <div class="box">
+		<div th:switch="${posts}">
+			<div th:case="*">
+					<div class="post" th:each="post : ${posts}">
+						<div class=name th:text="${post.name}"></div>
+						<div class=message th:text="${post.message}"></div>
+						<div class=timestamp th:text="${post.time}"></div>
+					</div>
+			</div>
+		</div> 
+	</div>
+	<div>
+		<form action="#" th:action="@{/}" th:object="${newPost}" method="post">
+			<div>Name: <input type="text" th:field="*{name}"></div>
+			<div>Message: <input type="text" th:field="*{message}"></div>
+			<div><input type="submit" value="Post Message"></div>
+		</form>	
+	</div>      
 </body>
 </html>
