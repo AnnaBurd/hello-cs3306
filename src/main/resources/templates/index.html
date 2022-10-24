@@ -7,26 +7,31 @@
 </head>
 <body>
     <h1>Demo: Course Forum</h1> 
-    <p>This APP loads and stored data to PostgreSQL database which resides in AWS Cloud provided by Heroku PaaS</p>
-    
+    <div>This APP loads and stored data to PostgreSQL database which resides in AWS Cloud provided by Heroku PaaS</div>
+    <br>
     <div>You can see recent posts and write your own below:</div>
+    <div>
+		<form class=inputBox action="#" th:action="@{/}" th:object="${newPost}" method="post">
+			<label>Name:</label>
+			<div><input type="text" th:field="*{name}"></div>
+			<label>Message:</label>
+			<div><textarea class="messageBox" rows="5" th:field="*{message}"></textarea></div>
+			<button type="submit">Post Message</button>
+		</form>	
+	</div>  
     <div class="box">
 		<div th:switch="${posts}">
 			<div th:case="*">
 					<div class="post" th:each="post : ${posts}">
-						<div class=name th:text="${post.name}"></div>
-						<div class=message th:text="${post.message}"></div>
-						<div class=timestamp th:text="${post.time}"></div>
+						<div class="header">
+						<div class="name" th:text="${post.name}"></div>
+						<div class="timestamp" th:text="${#dates.format(post.time, 'HH:mm:ss dd-MM-yyyy')}"></div>
+						</div>
+						<div class="message" th:text="${post.message}"></div>						
 					</div>
 			</div>
 		</div> 
 	</div>
-	<div>
-		<form action="#" th:action="@{/}" th:object="${newPost}" method="post">
-			<div>Name: <input type="text" th:field="*{name}"></div>
-			<div>Message: <input type="text" th:field="*{message}"></div>
-			<div><input type="submit" value="Post Message"></div>
-		</form>	
-	</div>      
+    
 </body>
 </html>

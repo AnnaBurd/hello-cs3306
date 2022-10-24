@@ -26,5 +26,25 @@ public class Post {
 	private String message;	
 	@CreationTimestamp
 	private Timestamp time;
+	
+	public boolean hasData() {
+		
+		int emptyFields = 0;
+		
+		if(this.getName().equals("")) {
+			this.setName("anonim");
+			emptyFields++;
+		}
+		
+		if(this.getMessage().equals("")) {
+			this.setName("no message");
+			emptyFields++;
+		}
+		
+		if(emptyFields ==2) {
+			return false;
+		}
+		return true;
+	}
 
 }
